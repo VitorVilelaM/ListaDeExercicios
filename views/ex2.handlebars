@@ -1,0 +1,25 @@
+<h2>{{tituloPagina}}</h2>
+<form method="get" action="/ex2">
+  <label>Número</label>
+  <input type="number" name="tabuada">
+  </div>
+
+  <button type="submit">Enviar</button>
+</form>
+{{#if resposta}}
+<p>
+  {{num}}
+  X <br>
+  {{#each mults}}
+  {{this}}<br>
+  {{/each}}
+  {{#each mults}}
+  = <br>
+  {{/each}}
+  {{#each tab}}
+  {{this}} <br>
+  {{/each}}
+
+</p>
+{{/if}}
+<h2>Tabuada do {{num}}</h2>
