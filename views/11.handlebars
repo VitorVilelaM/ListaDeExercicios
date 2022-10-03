@@ -1,0 +1,58 @@
+<form method="post" name="form" action="/11">
+    <input type="text" name="nome" placeholder="Ex nome: Exemplo de Oliveira">
+    <input type="email" name="email" placeholder="Ex email: exemplo@exemplo.com">
+    <input type="text" name="cpf" placeholder="Ex CPF: 123.456.789-01">
+    <input type="number" name="idade" placeholder="Ex idade: 34">
+    <button type="submit">Enviar</button>
+    <a href="/"><button type="button" id="back">Voltar</button></a>
+</form>
+
+{{#if dados}}
+<div class="message message-empty" id="message">
+    <div class="title">
+        {{mensagemTitulo}} <span class='negrito'>{{status}}</span>
+        <button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+    </div>
+    <div class="text" id="value">
+        <p>{{mensagemTexto}}</p>
+    </div>
+</div>
+{{/if}}
+{{#if dadosValidos}}
+<div class="message message-zero" id="message">
+    <div class="title">
+        {{mensagemTitulo}}
+        <button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+    </div>
+
+    <div class="text" id="value">
+        <p><span class='negrito'>Nome: </span>{{nome}}<br><span class='negrito'>Email: </span>{{email}}<br><span
+                class='negrito'>CPF: </span>{{cpf}}<br><span class='negrito'>Idade: </span>{{idade}}</p>
+    </div>
+</div>
+{{/if}}
+<script type="text/javascript">
+    var i;
+    var close = document.getElementsByClassName("close");
+    var message = document.getElementsByClassName("message");
+
+    for (i = 0; i < close.length; i++) {
+        close[i].addEventListener("click", closeMessage);
+    }
+
+    function closeMessage() {
+        var nome = document.forms["form"]["nome"];
+        var email = document.forms["form"]["email"];
+        var cpf = document.forms["form"]["cpf"];
+        var idade = document.forms["form"]["idade"];
+
+        nome.value = "";
+        email.value = "";
+        cpf.value = "";
+        idade.value = "";
+
+        for (i = 0; i < message.length; i++) {
+            message[i].style.display = "none";
+        }
+    }
+</script>

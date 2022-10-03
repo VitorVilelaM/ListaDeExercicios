@@ -1,0 +1,138 @@
+:root{
+	--rosa: #ffe8f0;
+	--rosa_escuro: #4f071f;
+}
+
+*{
+	font-family: 'Montserrat', sans-serif;
+}
+
+body{
+	background-color: var(--rosa);
+}
+header{
+	text-align: center;
+}
+header .title{
+	text-transform: uppercase;
+	color: var(--rosa_escuro);
+	font-size: 60px;
+}
+header .subtitle{
+	color: var(--rosa_escuro);
+	font-size: 25px;
+}
+form{
+	text-align: center;
+	margin: 3% 40%;
+	width: 20%;
+}
+form input{
+	display: block;
+	width: 96%;
+	padding: 5% 2%;
+	margin-bottom: 3%;
+	border-radius: 10px;
+	border: 1px solid var(--rosa_escuro);
+}
+form select{
+	display: block;
+	width: 101%;
+	padding: 5% 3%;
+	margin-bottom: 3%;
+	border-radius: 10px;
+	border: 1px solid var(--rosa_escuro);
+}
+form a{
+	text-decoration: none;
+}
+form button{
+	display: block;
+	margin: 10% 30%;
+	width: 40%;
+	padding: 3% 0%;
+	cursor: pointer;
+	font-size: 18px;
+	background-color: var(--rosa_escuro);
+	color: white;
+	border: none;
+	border-radius: 10px;
+	transition: background-color 0.5s, transform 0.5s;
+}
+form button:hover{
+	background-color: rgba(79, 7, 31, 0.8);
+	transform: scale(1.05);
+}
+.message{
+	position: fixed;
+	top: 40%;
+	left: 35%;
+	width: 30%;
+	height: 20%;
+	background-color: white;
+	border: 3px solid var(--rosa_escuro);
+	display: none;
+	overflow: hidden;
+}
+.message .title{
+	background-color: var(--rosa_escuro);
+	padding: 2% 0%;
+	font-size: 25px;
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+}
+.message .title .close{
+	position: absolute;
+	top: 5%;
+	float: right;
+	right: 1%;
+	font-size: 25px;
+	text-align: center;
+	color: white;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.5s, ;
+}
+.message .title .close:hover{
+	color: var(--rosa);
+	font-size: 27px;
+}
+.message .text{
+	position: relative;
+  	text-align: center;
+  	padding: 0% 2%;
+}
+.ex2 .message .text,
+.ex11 .message .text{
+	height: 90px;
+	overflow-y: scroll;
+}
+.index .message .text p,
+.ex1 .message .text p,
+.ex3 .message .text p,
+.ex4 .message .text p,
+.ex5 .message .text p,
+.ex7 .message .text p,
+.ex9 .message .text p{
+  	margin-top: 7%;
+}
+.ex2 .message .text p,
+.ex6 .message .text p{
+  	margin-top: 5%;
+}
+.ex7 .message .text .top-value{
+	margin-top: 3%;
+}
+.ex8 .message .text p,
+.ex10 .message .text p{
+  	margin-top: 3%;
+}
+.ex9 form #fake{
+	display: none;
+}
+.message .text .negrito{
+	font-weight: bold;
+	text-transform: uppercase;
+}

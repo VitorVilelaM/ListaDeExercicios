@@ -1,0 +1,50 @@
+<form method="post" name="form" action="/8">
+    <input type="number" name="number" placeholder="Ex salário fixo: 1290,70" min="0" step="0.01">
+    <input type="number" name="vendas" placeholder="Ex total vendas: 1500,00" min="0" step="0.01">
+    <button type="submit">Enviar</button>
+    <a href="/"><button type="button" id="back">Voltar</button></a>
+</form>
+
+{{#if dados}}
+<div class="message message-empty" id="message">
+    <div class="title">
+        {{mensagemTitulo}} <span class='negrito'>{{status}}</span>
+        <button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+    </div>
+    <div class="text" id="value">
+        <p>{{mensagemTexto}}</p>
+    </div>
+</div>
+{{/if}}
+{{#if dadosValidos}}
+<div class="message message-zero" id="message">
+    <div class="title">
+        {{mensagemTitulo}} <span class='negrito'>{{status}}</span>
+        <button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+    </div>
+    <div class="text" id="value">
+       <p>O valor do salário total com a comissão é <span class='negrito'>R$ {{total}} </span> sendo desses R$ {{comissao}} a comissão das vendas.</p>
+       
+</div>
+{{/if}}
+
+<script type="text/javascript">
+	var i; 
+	var close = document.getElementsByClassName("close");
+	var message = document.getElementsByClassName("message");
+
+	for(i = 0; i < close.length; i++){
+		close[i].addEventListener("click", closeMessage);
+	}
+
+	function closeMessage(){
+		var number = document.forms["form"]["number"];
+		var vendas = document.forms["form"]["vendas"];
+		number.value = "";
+		vendas.value = "";
+
+		for(i = 0; i < message.length; i++){
+			message[i].style.display = "none";
+		}
+	}
+</script>

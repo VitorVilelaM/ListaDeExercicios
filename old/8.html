@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
+	<title>Lista Javascript - Ex8</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="ex8">
+	<div class="container">
+		<header>
+			<div class="title">Exercício 8</div>
+			<div class="subtitle">Insira os números (comissão)</div>
+		</header>
+		<form method="post" onsubmit="return validateForm()" name="form">
+			<input type = "number" name="number" placeholder="Ex salário fixo: 1290,70" min="0" step="0.01">
+			<input type = "number" name="vendas" placeholder="Ex total vendas: 1500,00" min="0" step="0.01">
+			<button type="submit">Enviar</button>
+			<a href="index.html"><button type="button" id="back">Voltar</button></a>
+		</form>
+	</div>
+
+	<div class="message message-empty" id="message-empty">
+		<div class="title">
+			Cuidado!
+			<button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+		</div>
+		<div class="text"><p>Todos os campos devem ser preenchidos!</p></div>
+	</div>
+	<div class="message message-zero" id="message">
+		<div class="title">
+			Resultado
+			<button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+		</div>
+		<div class="text" id="value"></div>
+	</div>
+	
+<script type="text/javascript">
+	var i; 
+	var close = document.getElementsByClassName("close");
+	var message = document.getElementsByClassName("message");
+
+	for(i = 0; i < close.length; i++){
+		close[i].addEventListener("click", closeMessage);
+	}
+
+	function closeMessage(){
+		var number = document.forms["form"]["number"];
+		var vendas = document.forms["form"]["vendas"];
+		number.value = "";
+		vendas.value = "";
+
+		for(i = 0; i < message.length; i++){
+			message[i].style.display = "none";
+		}
+	}
+
+	function validateForm(){
+		let number = document.forms["form"]["number"].value;
+		let vendas = document.forms["form"]["vendas"].value;
+		var value = document.getElementById("value");
+
+		if (number == "") {
+			var message = document.getElementById("message-empty");
+			message.style.display = "block";
+			return false;
+		}else{
+			var salario = parseFloat(number);
+			vendas = parseFloat(vendas);
+			if(vendas > 1500){
+				var extra = (vendas - 1500) * 0.05;
+				var comissao = extra + (1500 * 0.03);
+			}else{
+				var comissao = vendas * 0.03;
+			}
+
+			var total = (salario + comissao).toFixed(2);
+			comissao = (comissao).toFixed(2);
+			value.innerHTML = "<p>O valor do salário total com a comissão é <span class='negrito'>R$"+total+"</span> sendo desses R$"+comissao+" a comissão das vendas.</p>";
+		}
+
+		var message = document.getElementById("message");
+		message.style.display = "block";
+		return false;
+	}
+
+</script>
+</body>
+</html>

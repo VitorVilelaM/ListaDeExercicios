@@ -1,0 +1,62 @@
+        <form method="post" name="form" action="/2">
+			<input type = "number" name="number" min="0">
+			<button type="submit">Enviar</button>
+			<a href="/"><button type="button" id="back">Voltar</button></a>
+		</form>
+	</div>
+
+    {{#if dadosValidos}}
+        <div class="message message-table" id="message">
+            <div class="title">
+                {{mensagemTitulo}}
+                <button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+            </div>
+            <div class="text" id="multiplication-table">
+                <p>
+                    {{number}} * 0 = <span class='negrito'>{{resultado0}}</span><br>
+                    {{number}} * 1 = <span class='negrito'>{{resultado1}}</span><br>
+                    {{number}} * 2 = <span class='negrito'>{{resultado2}}</span><br>
+                    {{number}} * 3 = <span class='negrito'>{{resultado3}}</span><br>
+                    {{number}} * 4 = <span class='negrito'>{{resultado4}}</span><br>
+                    {{number}} * 5 = <span class='negrito'>{{resultado5}}</span><br>
+                    {{number}} * 6 = <span class='negrito'>{{resultado6}}</span><br>
+                    {{number}} * 7 = <span class='negrito'>{{resultado7}}</span><br>
+                    {{number}} * 8 = <span class='negrito'>{{resultado8}}</span><br>
+                    {{number}} * 9 = <span class='negrito'>{{resultado9}}</span><br>
+                    {{number}} * 10 = <span class='negrito'>{{resultado10}}</span><br>
+                </p>
+            </div>
+        </div>
+    {{/if}}
+    {{#if dados}}
+        <div class="message message-table" id="message">
+            <div class="title">
+                {{mensagemTitulo}}
+                <button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+            </div>
+            <div class="text" id="multiplication-table">
+                <p>
+                    {{mensagemTexto}}
+                </p>
+            </div>
+        </div>
+    {{/if}}
+	
+<script type="text/javascript">
+	var i; 
+	var close = document.getElementsByClassName("close");
+	var message = document.getElementsByClassName("message");
+
+	for(i = 0; i < close.length; i++){
+		close[i].addEventListener("click", closeMessage);
+	}
+
+	function closeMessage(){
+		var number = document.forms["form"]["number"];
+		number.value = "";
+		for(i = 0; i < message.length; i++){
+			message[i].style.display = "none";
+		}
+	}
+
+</script>

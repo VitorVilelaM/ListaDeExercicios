@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
+	<title>Lista Javascript - Ex2</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="ex2">
+	<div class="container">
+		<header>
+			<div class="title">Exercício 2</div>
+			<div class="subtitle">Insira um número (tabuada)</div>
+		</header>
+		<form method="get" onsubmit="return validateForm()" name="form">
+			<input type = "number" name="number" min="0">
+			<button type="submit">Enviar</button>
+			<a href="index.html"><button type="button" id="back">Voltar</button></a>
+		</form>
+	</div>
+
+	<div class="message message-empty" id="message-empty">
+		<div class="title">
+			Cuidado!
+			<button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+		</div>
+		<div class="text">Todos os campos devem ser preenchidos!</div>
+	</div>
+	<div class="message message-table" id="message">
+		<div class="title">
+			Resultado
+			<button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+		</div>
+		<div class="text" id="multiplication-table"></div>
+	</div>
+	
+<script type="text/javascript">
+	var i; 
+	var close = document.getElementsByClassName("close");
+	var message = document.getElementsByClassName("message");
+
+	for(i = 0; i < close.length; i++){
+		close[i].addEventListener("click", closeMessage);
+	}
+
+	function closeMessage(){
+		var number = document.forms["form"]["number"];
+		number.value = "";
+		for(i = 0; i < message.length; i++){
+			message[i].style.display = "none";
+		}
+	}
+
+	function validateForm(){
+		let number = document.forms["form"]["number"].value;
+		if (number == "") {
+			var message = document.getElementById("message-empty");
+			message.style.display = "block";
+			return false;
+		}else if(number == 0){
+			var message = document.getElementById("message");
+			message.style.display = "block";
+
+			var table = document.getElementById("multiplication-table");
+
+			table.innerHTML = "<p>O número 0 (zero) multiplicado com qualquer número é sempre 0 (zero)!</p>";
+			return false;
+		}else{
+			var message = document.getElementById("message");
+			message.style.display = "block";
+
+			var table = document.getElementById("multiplication-table");
+			var result = "<p>", mult;
+
+			for(i = 0; i < 11; i++){
+				mult = number*i;
+				result = result+number+" * "+i+" = <span class='negrito'>"+mult+"</span><br>";
+			}
+
+			table.innerHTML = result+"</p>";
+			return false;
+		}
+	}
+
+</script>
+</body>
+</html>

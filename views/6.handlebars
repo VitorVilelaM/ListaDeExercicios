@@ -1,0 +1,54 @@
+<form method="post" name="form" action="/6">
+    <input type="number" name="nota1" placeholder="Ex nota: 3,5" min="0" step="0.01">
+    <input type="number" name="nota2" placeholder="Ex nota: 1,25" min="0" step="0.01">
+    <input type="number" name="nota3" placeholder="Ex nota: 2,8" min="0" step="0.01">
+    <button type="submit">Enviar</button>
+    <a href="/"><button type="button" id="back">Voltar</button></a>
+</form>
+</div>
+
+{{#if dados}}
+<div class="message message-empty" id="message">
+    <div class="title">
+        {{mensagemTitulo}} <span class='negrito'>{{status}}</span>
+        <button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+    </div>
+    <div class="text" id="value">
+        <p>{{mensagemTexto}}</p>
+    </div>
+</div>
+{{/if}}
+{{#if dadosValidos}}
+<div class="message message-zero" id="message">
+    <div class="title">
+        {{mensagemTitulo}} <span class='negrito'>{{status}}</span>
+        <button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+    </div>
+    <div class="text" id="value">
+        <p>{{mensagemTexto}}</p>
+    </div>
+</div>
+{{/if}}
+
+<script type="text/javascript">
+    var i;
+    var close = document.getElementsByClassName("close");
+    var message = document.getElementsByClassName("message");
+
+    for (i = 0; i < close.length; i++) {
+        close[i].addEventListener("click", closeMessage);
+    }
+
+    function closeMessage() {
+        var nota1 = document.forms["form"]["nota1"];
+        var nota2 = document.forms["form"]["nota2"];
+        var nota3 = document.forms["form"]["nota3"];
+        nota1.value = "";
+        nota2.value = "";
+        nota3.value = "";
+
+        for (i = 0; i < message.length; i++) {
+            message[i].style.display = "none";
+        }
+    }
+</script>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
+	<title>Lista Javascript - Ex3</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="ex3">
+	<div class="container">
+		<header>
+			<div class="title">Exercício 3</div>
+			<div class="subtitle">Insira os números (IMC)</div>
+		</header>
+		<form method="get" onsubmit="return validateForm()" name="form">
+			<input type = "number" name="peso" placeholder="Ex peso: 75,3" min="0" step=".01">
+			<input type = "number" name="altura" placeholder="Ex altura: 1,65" min="0" step=".01">
+			<button type="submit">Enviar</button>
+			<a href="index.html"><button type="button" id="back">Voltar</button></a>
+		</form>
+	</div>
+
+	<div class="message message-empty" id="message-empty">
+		<div class="title">
+			Cuidado!
+			<button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+		</div>
+		<div class="text">Todos os campos devem ser preenchidos!</div>
+	</div>
+	<div class="message message-table" id="message">
+		<div class="title">
+			Resultado
+			<button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+		</div>
+		<div class="text" id="IMC"></div>
+	</div>
+	
+<script type="text/javascript">
+	var i; 
+	var close = document.getElementsByClassName("close");
+	var message = document.getElementsByClassName("message");
+
+	for(i = 0; i < close.length; i++){
+		close[i].addEventListener("click", closeMessage);
+	}
+
+	function closeMessage(){
+		var peso = document.forms["form"]["peso"];
+		var altura = document.forms["form"]["altura"];
+		peso.value = "";
+		altura.value = "";
+
+		for(i = 0; i < message.length; i++){
+			message[i].style.display = "none";
+		}
+	}
+
+	function validateForm(){
+		let peso = document.forms["form"]["peso"].value;
+		let altura = document.forms["form"]["altura"].value;
+		if (peso == "" || altura == "") {
+			var message = document.getElementById("message-empty");
+			message.style.display = "block";
+			return false;
+		}else if(peso == 0 || altura == 0){
+			var message = document.getElementById("message");
+			message.style.display = "block";
+
+			var table = document.getElementById("IMC");
+
+			table.innerHTML = "<p>Insira valores maiores que 0 (zero)!</p>";
+			return false;
+		}else{
+			var message = document.getElementById("message");
+			message.style.display = "block";
+
+			var table = document.getElementById("IMC");
+			var imc = peso / (altura*altura);
+
+			if (imc < 18.5){
+				table.innerHTML = "<p>Classificação: <span class='negrito'>MAGREZA</span> (menor que 18,5)</p>";
+			}else if (imc > 18.5 && imc < 24.9){
+				table.innerHTML = "<p>Classificação: <span class='negrito'>NORMAL</span> (entre 18,5 e 24,9)</p>";
+			}else if (imc > 25 && imc < 29.9){
+				table.innerHTML = "<p>Classificação: <span class='negrito'>SOBREPESO</span> (entre 25,0 e 29,9)</p>";
+			}else if (imc > 30 && imc < 39.9){
+				table.innerHTML = "<p>Classificação: <span class='negrito'>OBESIDADE</span> (entre 30,0 e 39,9)</p>";
+			}else if (imc > 40){
+				table.innerHTML = "<p>Classificação: <span class='negrito'>OBESIDADE GRAVE</span> (maior que 40,0)</p>";
+			}
+
+			return false;
+		}
+	}
+
+</script>
+</body>
+</html>

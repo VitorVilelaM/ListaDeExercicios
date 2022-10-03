@@ -1,0 +1,48 @@
+    <form method="post" name="form" action="/3">
+        <input type = "number" name="peso" placeholder="Ex peso: 75,3" min="0" step=".01">
+        <input type = "number" name="altura" placeholder="Ex altura: 1,65" min="0" step=".01">
+        <button type="submit">Enviar</button>
+        <a href="/"><button type="button" id="back">Voltar</button></a>
+    </form>
+    </div>
+
+    {{#if dados}}
+        <div class="message message-table" id="message">
+            <div class="title">
+                {{mensagemTitulo}}
+                <button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+            </div>
+            <div class="text" id="IMC"><p>{{mensagemTexto}}.</p></div>
+        </div>
+    {{/if}}
+    {{#if dadosValidos}}
+        <div class="message message-table" id="message">
+            <div class="title">
+                {{mensagemTitulo}}
+                <button class="close" class="close"><i class='fa fa-times-circle'></i></button>
+            </div>
+            <div class="text" id="IMC"><p>Classificação: <span class='negrito'>{{mensagemClassificacao}}</span> {{mensagemFaixa}}.</p></div>
+        </div>
+    {{/if}}
+	
+<script type="text/javascript">
+	var i; 
+	var close = document.getElementsByClassName("close");
+	var message = document.getElementsByClassName("message");
+
+	for(i = 0; i < close.length; i++){
+		close[i].addEventListener("click", closeMessage);
+	}
+
+	function closeMessage(){
+		var peso = document.forms["form"]["peso"];
+		var altura = document.forms["form"]["altura"];
+		peso.value = "";
+		altura.value = "";
+
+		for(i = 0; i < message.length; i++){
+			message[i].style.display = "none";
+		}
+	}
+
+</script>
